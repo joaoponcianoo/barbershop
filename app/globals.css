@@ -1,9 +1,6 @@
 @import "tailwindcss";
 
-@theme {
-  --color-background: #0d0f19; /* 225 9% 9% */
-  --color-foreground: #dae4ff; /* 210 40% 98% */
-  
+:root { 
   --background: #0d0f19; /* 225 9% 9% */
   --foreground: #dae4ff; /* 210 40% 98% */
 
@@ -33,4 +30,9 @@
   --ring: #a3c7f5; /* 212.7 26.8% 83.9% */
 
   --radius: 0.5rem;
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
 }
