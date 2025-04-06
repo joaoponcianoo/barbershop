@@ -1,6 +1,8 @@
 import { db } from "@/app/_lib/prisma";
 import BarbershopInfo from "./_components/BarbershopInfo";
 import ServiceItem from "./_components/ServiceItem";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 
 interface BarbershopDetailsPageProps {
   params: {
@@ -11,24 +13,14 @@ interface BarbershopDetailsPageProps {
 const BarbershopDetailsPage = async ({
   params,
 }: BarbershopDetailsPageProps) => {
-  if (!params.id) {
-    // todo: redirect to 404
-    return null;
-  }
+  const session = await getServerSession(authOptions);
 
   const barbershop = await db.barbershop.findUnique({
     where: {
       id: params.id,
     },
-    include: {
-      services: true,
-    },
   });
 
-  if (!barbershop) {
-    // todo: redirect to 404
-    return null;
-  }
   const barbershopServices = await db.barbershopService.findMany({
     where: {
       barbershopId: params.id,
@@ -37,10 +29,14 @@ const BarbershopDetailsPage = async ({
 
   return (
     <div>
-      <BarbershopInfo barbershop={barbershop} />
+      {barbershop && <BarbershopInfo barbershop={barbershop} />}
       <div className="px-5 flex flex-col gap-4 mt-4">
         {barbershopServices.map((service) => (
-          <ServiceItem key={service.id} service={service} />
+          <ServiceItem
+            key={service.id}
+            service={service}
+            isAuthenticated={!!session?.user}
+          />
         ))}
       </div>
     </div>

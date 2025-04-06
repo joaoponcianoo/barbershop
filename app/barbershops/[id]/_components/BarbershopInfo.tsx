@@ -8,6 +8,9 @@ import { useRouter } from "next/navigation";
 import { Sheet, SheetContent, SheetTrigger } from "@/app/_components/ui/sheet";
 import SideMenu from "@/app/_components/SideMenu";
 
+// interface BarbershopInfoProps {
+//   barbershop: Barbershop
+// }
 interface BarbershopInfoProps {
   barbershop: Barbershop;
 }
@@ -16,7 +19,7 @@ const BarbershopInfo = ({ barbershop }: BarbershopInfoProps) => {
   const router = useRouter();
 
   const handleBackClick = () => {
-    router.back();
+    router.replace("/");
   };
 
   return (
