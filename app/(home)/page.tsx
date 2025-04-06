@@ -21,11 +21,11 @@ export default async function Home() {
         </p>
       </div>
 
-      <div className="px-5 mt-6">
+      <div className="mt-6 px-5">
         <Search />
       </div>
 
-      <div className="px-5 mt-6">
+      <div className="mt-6 px-5">
         <h2 className="text-xs uppercase text-gray-400 font-bold mb-3">
           Agendamentos
         </h2>
@@ -44,7 +44,7 @@ export default async function Home() {
         </div>
       </div>
 
-      <div className="mt-6 px-5 ">
+      <div className="mt-6 px-5">
         <h2 className="text-xs uppercase text-gray-400 font-bold mb-3">
           Populares
         </h2>
