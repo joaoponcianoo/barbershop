@@ -1,5 +1,6 @@
 import "./globals.css";
 import Footer from "./_components/Footer";
+import AuthProvider from "./_providers/auth";
 
 export default function RootLayout({
   children,
@@ -7,8 +8,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        {children}
-        <Footer />
+        <AuthProvider>
+          {children}
+          <Footer />
+        </AuthProvider>
       </body>
     </html>
   );
